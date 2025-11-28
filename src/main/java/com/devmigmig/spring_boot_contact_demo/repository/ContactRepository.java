@@ -15,7 +15,7 @@ public class ContactRepository {
         return contacts;
     }
 
-    public Contact geContact(int index){
+    public Contact getContact(int index){
         return contacts.get(index);
     }
 
