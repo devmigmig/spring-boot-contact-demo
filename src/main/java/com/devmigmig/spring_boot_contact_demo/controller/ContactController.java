@@ -8,10 +8,13 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.devmigmig.spring_boot_contact_demo.pojo.Contact;
 import com.devmigmig.spring_boot_contact_demo.service.ContactService;
+
+import jakarta.validation.Valid;
 
 
 @RestController
@@ -32,4 +35,9 @@ public class ContactController {
         return new ResponseEntity<>(contact, HttpStatus.OK);
     }
     
+    @GetMapping(value = "/contact", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Contact> createContact(@Valid @RequestBody Contact contact){
+        contactService.saveContact(contact);
+        return new ResponseEntity<>(contact, HttpStatus.CREATED);
+    }
 }
